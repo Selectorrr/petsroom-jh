@@ -1,0 +1,20 @@
+{
+    "generator-jhipster": {
+        "baseName": "petsroom",
+        "packageName": "net.org.selector.petsroom",
+        "packageFolder": "net/org/selector/petsroom",
+        "authenticationType": "xauth",
+        "hibernateCache": "no",
+        "clusteredHttpSession": "no",
+        "websocket": "spring-websocket",
+        "databaseType": "mongodb",
+        "devDatabaseType": "mongodb",
+        "prodDatabaseType": "mongodb",
+        "useCompass": true,
+        "buildTool": "maven",
+        "frontendBuilder": "grunt",
+        "javaVersion": "8",
+        "rememberMeKey": "b3dbdfa1da628190d5ff0a424c28b5e1b72543b6",
+        "searchEngine": "no"
+    }
+}
