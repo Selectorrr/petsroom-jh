@@ -90,6 +90,7 @@ angular.module('petsroomApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pasca
             }
         });
 
+
         $httpProvider.interceptors.push('authInterceptor');
 
         // Initialize angular-translate

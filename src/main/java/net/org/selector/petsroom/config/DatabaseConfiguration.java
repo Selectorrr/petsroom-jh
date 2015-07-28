@@ -21,7 +21,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import javax.inject.Inject;
 
 @Configuration
-@Profile("!cloud")
+@Profile("!" + Constants.SPRING_PROFILE_CLOUD)
 @EnableMongoRepositories("net.org.selector.petsroom.repository")
 @Import(value = MongoAutoConfiguration.class)
 @EnableMongoAuditing(auditorAwareRef = "springSecurityAuditorAware")
