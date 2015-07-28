@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('petsroomApp', ['LocalStorageModule', 'tmh.dynamicLocale',
-    'ngResource', 'ui.router', 'ngCookies', 'pascalprecht.translate', 'ngCacheBuster', 'infinite-scroll'])
+angular.module('petsroomApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprecht.translate',
+    'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll'])
 
-    .run(function ($rootScope, $location, $window, $http, $state, $translate, Auth, Principal, Language, ENV, VERSION) {
+    .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
@@ -18,6 +18,7 @@ angular.module('petsroomApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             Language.getCurrent().then(function (language) {
                 $translate.use(language);
             });
+
         });
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
@@ -30,10 +31,12 @@ angular.module('petsroomApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             if (toState.data.pageTitle) {
                 titleKey = toState.data.pageTitle;
             }
+
             $translate(titleKey).then(function (title) {
                 // Change window title with translated one
                 $window.document.title = title;
             });
+
         });
 
         $rootScope.back = function () {
@@ -101,4 +104,5 @@ angular.module('petsroomApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
         tmhDynamicLocaleProvider.useCookieStorage();
         tmhDynamicLocaleProvider.storageKey('NG_TRANSLATE_LANG_KEY');
+
     });

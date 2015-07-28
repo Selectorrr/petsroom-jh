@@ -1,4 +1,4 @@
-// Generated on 2015-07-28 using generator-jhipster 2.15.2
+// Generated on 2015-07-28 using generator-jhipster 2.16.0
 'use strict';
 var fs = require('fs');
 
@@ -292,19 +292,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        concurrent: {
-            server: [
-                'compass:server'
-            ],
-            test: [
-                'compass'
-            ],
-            dist: [
-                'compass:dist',
-                'imagemin',
-                'svgmin'
-            ]
-        },
         karma: {
             unit: {
                 configFile: 'src/test/javascript/karma.conf.js',
@@ -367,7 +354,7 @@ module.exports = function (grunt) {
         'clean:server',
         'wiredep',
         'ngconstant:dev',
-        'concurrent:server',
+        'compass:server',
         'browserSync',
         'watch'
     ]);
@@ -381,7 +368,7 @@ module.exports = function (grunt) {
         'clean:server',
         'wiredep:test',
         'ngconstant:dev',
-        'concurrent:test',
+        'compass',
         'karma'
     ]);
 
@@ -391,7 +378,9 @@ module.exports = function (grunt) {
         'ngconstant:prod',
         'useminPrepare',
         'ngtemplates',
-        'concurrent:dist',
+        'compass:dist',
+        'imagemin',
+        'svgmin',
         'concat',
         'copy:dist',
         'ngAnnotate',

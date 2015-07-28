@@ -4,7 +4,7 @@ server:
 
 
 # security configuration (this key should be unique for your application, and kept secret)
-jhipster.security.rememberme.key: 02e10cc70c13c71a033d995d4db709862bd37620
+jhipster.security.rememberme.key: 2f1d1e4068b44c28152a5e26adadc93c20af68ab
 
 async:
     corePoolSize: 2
