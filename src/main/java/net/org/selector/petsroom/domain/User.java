@@ -8,7 +8,7 @@ import net.org.selector.petsroom.domain.util.CustomDateTimeSerializer;
 import org.hibernate.validator.constraints.Email;
 import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.validation.constraints.NotNull;
@@ -21,7 +21,8 @@ import java.util.Set;
 /**
  * A user.
  */
-@Document(collection = "JHI_USER")
+@org.springframework.data.mongodb.core.mapping.Document(collection = "JHI_USER")
+@Document(indexName = "user")
 public class User extends AbstractAuditingEntity implements Serializable {
 
     @Id

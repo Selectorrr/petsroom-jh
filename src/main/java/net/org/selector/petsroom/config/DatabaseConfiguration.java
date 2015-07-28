@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
@@ -21,6 +22,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import javax.inject.Inject;
 
 @Configuration
+@EnableElasticsearchRepositories("net.org.selector.petsroom.repository.search")
 @Profile("!" + Constants.SPRING_PROFILE_CLOUD)
 @EnableMongoRepositories("net.org.selector.petsroom.repository")
 @Import(value = MongoAutoConfiguration.class)

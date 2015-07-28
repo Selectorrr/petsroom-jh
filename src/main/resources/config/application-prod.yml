@@ -12,6 +12,10 @@ spring:
             host: localhost
             port: 27017
             database: petsroom
+    data:
+        elasticsearch:
+            cluster-name:
+            cluster-nodes: localhost:9200
     thymeleaf:
         mode: XHTML
         cache: true

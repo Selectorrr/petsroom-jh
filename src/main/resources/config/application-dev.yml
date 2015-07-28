@@ -12,6 +12,14 @@ spring:
             host: localhost
             port: 27017
             database: petsroom
+    data:
+        elasticsearch:
+            cluster-name:
+            cluster-nodes:
+            properties:
+                path:
+                  logs: target/elasticsearch/log
+                  data: target/elasticsearch/data 
     messages:
         cache-seconds: 1
     thymeleaf:
