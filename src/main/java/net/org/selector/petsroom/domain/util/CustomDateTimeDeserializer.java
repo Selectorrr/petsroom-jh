@@ -10,7 +10,7 @@ import org.joda.time.format.ISODateTimeFormat;
 import java.io.IOException;
 
 /**
- * Custom Jackson deserializer for displaying Joda DateTime objects.
+ * Custom Jackson deserializer for transforming a JSON object to a Joda DateTime object.
  */
 public class CustomDateTimeDeserializer extends JsonDeserializer<DateTime> {
 

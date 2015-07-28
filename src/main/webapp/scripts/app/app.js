@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('petsroomApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprecht.translate',
+    'ui.bootstrap', // for modal dialogs
     'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll'])
 
     .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
@@ -63,6 +64,22 @@ angular.module('petsroomApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pasca
             }
         };
     })
+    .factory('authExpiredInterceptor', function ($rootScope, $q, $injector, localStorageService) {
+        return {
+            responseError: function (response) {
+                // token has expired
+                if (response.status === 401 && (response.data.error == 'invalid_token' || response.data.error == 'Unauthorized')) {
+                    localStorageService.remove('token');
+                    var Principal = $injector.get('Principal');
+                    if (Principal.isAuthenticated()) {
+                        var Auth = $injector.get('Auth');
+                        Auth.authorize(true);
+                    }
+                }
+                return $q.reject(response);
+            }
+        };
+    })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider) {
 
         //Cache everything except rest api requests
@@ -89,6 +106,7 @@ angular.module('petsroomApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pasca
             }
         });
 
+        $httpProvider.interceptors.push('authExpiredInterceptor');
 
         $httpProvider.interceptors.push('authInterceptor');
 

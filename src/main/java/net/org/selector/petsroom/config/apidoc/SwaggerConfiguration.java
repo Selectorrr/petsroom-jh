@@ -16,6 +16,8 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.Date;
+
 import static springfox.documentation.builders.PathSelectors.regex;
 
 /**
@@ -49,15 +51,23 @@ public class SwaggerConfiguration implements EnvironmentAware {
         log.debug("Starting Swagger");
         StopWatch watch = new StopWatch();
         watch.start();
-        Docket swaggerSpringMvcPlugin = new Docket(DocumentationType.SWAGGER_2)
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
             .apiInfo(apiInfo())
             .genericModelSubstitutes(ResponseEntity.class)
+            .forCodeGeneration(true)
+            .genericModelSubstitutes(ResponseEntity.class)
+            .directModelSubstitute(org.joda.time.LocalDate.class, String.class)
+            .directModelSubstitute(org.joda.time.LocalDateTime.class, Date.class)
+            .directModelSubstitute(org.joda.time.DateTime.class, Date.class)
+            .directModelSubstitute(java.time.LocalDate.class, String.class)
+            .directModelSubstitute(java.time.ZonedDateTime.class, Date.class)
+            .directModelSubstitute(java.time.LocalDateTime.class, Date.class)
             .select()
-            .paths(regex(DEFAULT_INCLUDE_PATTERN)) // and by paths
+            .paths(regex(DEFAULT_INCLUDE_PATTERN))
             .build();
         watch.stop();
         log.debug("Started Swagger in {} ms", watch.getTotalTimeMillis());
-        return swaggerSpringMvcPlugin;
+        return docket;
     }
 
     /**

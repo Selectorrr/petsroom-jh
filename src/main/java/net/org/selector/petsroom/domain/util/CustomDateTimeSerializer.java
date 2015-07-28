@@ -11,7 +11,7 @@ import org.joda.time.format.DateTimeFormatter;
 import java.io.IOException;
 
 /**
- * Custom Jackson serializer for displaying Joda DateTime objects.
+ * Custom Jackson serializer for transforming a Joda DateTime object to JSON.
  */
 public class CustomDateTimeSerializer extends JsonSerializer<DateTime> {
 
