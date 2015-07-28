@@ -8,7 +8,7 @@ angular.module('petsroomApp')
                 url: '/password',
                 data: {
                     roles: ['ROLE_USER'],
-                    pageTitle: 'global.menu.account.password'
+                    pageTitle: 'Password'
                 },
                 views: {
                     'content@': {
@@ -16,11 +16,6 @@ angular.module('petsroomApp')
                         controller: 'PasswordController'
                     }
                 },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('password');
-                        return $translate.refresh();
-                    }]
-                }
+                resolve: {}
             });
     });

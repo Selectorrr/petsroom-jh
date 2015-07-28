@@ -8,7 +8,7 @@ angular.module('petsroomApp')
                 url: '/register',
                 data: {
                     roles: [],
-                    pageTitle: 'register.title'
+                    pageTitle: 'Registration'
                 },
                 views: {
                     'content@': {
@@ -16,11 +16,6 @@ angular.module('petsroomApp')
                         controller: 'RegisterController'
                     }
                 },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('register');
-                        return $translate.refresh();
-                    }]
-                }
+                resolve: {}
             });
     });

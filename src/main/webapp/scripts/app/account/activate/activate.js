@@ -8,7 +8,7 @@ angular.module('petsroomApp')
                 url: '/activate?key',
                 data: {
                     roles: [],
-                    pageTitle: 'activate.title'
+                    pageTitle: 'Activation'
                 },
                 views: {
                     'content@': {
@@ -16,12 +16,7 @@ angular.module('petsroomApp')
                         controller: 'ActivationController'
                     }
                 },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('activate');
-                        return $translate.refresh();
-                    }]
-                }
+                resolve: {}
             });
     });
 

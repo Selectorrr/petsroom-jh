@@ -15,7 +15,7 @@
         "buildTool": "maven",
         "frontendBuilder": "grunt",
         "javaVersion": "8",
-        "enableTranslation": true,
+        "enableTranslation": false,
         "rememberMeKey": "e9d7a8dca5526bab593adb467d131f2dd39a309f"
     }
 }

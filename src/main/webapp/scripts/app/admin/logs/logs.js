@@ -8,7 +8,7 @@ angular.module('petsroomApp')
                 url: '/logs',
                 data: {
                     roles: ['ROLE_ADMIN'],
-                    pageTitle: 'logs.title'
+                    pageTitle: 'Logs'
                 },
                 views: {
                     'content@': {
@@ -16,11 +16,6 @@ angular.module('petsroomApp')
                         controller: 'LogsController'
                     }
                 },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('logs');
-                        return $translate.refresh();
-                    }]
-                }
+                resolve: {}
             });
     });

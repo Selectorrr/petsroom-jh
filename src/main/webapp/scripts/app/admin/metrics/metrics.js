@@ -8,7 +8,7 @@ angular.module('petsroomApp')
                 url: '/metrics',
                 data: {
                     roles: ['ROLE_ADMIN'],
-                    pageTitle: 'metrics.title'
+                    pageTitle: 'Application Metrics'
                 },
                 views: {
                     'content@': {
@@ -16,11 +16,6 @@ angular.module('petsroomApp')
                         controller: 'MetricsController'
                     }
                 },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('metrics');
-                        return $translate.refresh();
-                    }]
-                }
+                resolve: {}
             });
     });

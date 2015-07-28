@@ -8,7 +8,7 @@ angular.module('petsroomApp')
                 url: '/docs',
                 data: {
                     roles: ['ROLE_ADMIN'],
-                    pageTitle: 'global.menu.admin.apidocs'
+                    pageTitle: 'API'
                 },
                 views: {
                     'content@': {

@@ -8,7 +8,7 @@ angular.module('petsroomApp')
                 url: '/login',
                 data: {
                     roles: [],
-                    pageTitle: 'login.title'
+                    pageTitle: 'Authentication'
                 },
                 views: {
                     'content@': {
@@ -16,11 +16,6 @@ angular.module('petsroomApp')
                         controller: 'LoginController'
                     }
                 },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('login');
-                        return $translate.refresh();
-                    }]
-                }
+                resolve: {}
             });
     });

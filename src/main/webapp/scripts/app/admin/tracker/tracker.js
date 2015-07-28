@@ -6,7 +6,7 @@ angular.module('petsroomApp')
                 url: '/tracker',
                 data: {
                     roles: ['ROLE_ADMIN'],
-                    pageTitle: 'tracker.title'
+                    pageTitle: 'Real-time user activities'
                 },
                 views: {
                     'content@': {
@@ -14,12 +14,7 @@ angular.module('petsroomApp')
                         controller: 'TrackerController'
                     }
                 },
-                resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('tracker');
-                        return $translate.refresh();
-                    }]
-                },
+                resolve: {},
                 onEnter: function (Tracker) {
                     Tracker.subscribe();
                 },

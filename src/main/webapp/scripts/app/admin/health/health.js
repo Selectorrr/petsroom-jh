@@ -8,7 +8,7 @@ angular.module('petsroomApp')
                 url: '/health',
                 data: {
                     roles: ['ROLE_ADMIN'],
-                    pageTitle: 'health.title'
+                    pageTitle: 'Health checks'
                 },
                 views: {
                     'content@': {
@@ -16,11 +16,6 @@ angular.module('petsroomApp')
                         controller: 'HealthController'
                     }
                 },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('health');
-                        return $translate.refresh();
-                    }]
-                }
+                resolve: {}
             });
     });

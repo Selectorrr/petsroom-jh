@@ -15,11 +15,6 @@ angular.module('petsroomApp')
                         controller: 'RequestResetController'
                     }
                 },
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('reset');
-                        return $translate.refresh();
-                    }]
-                }
+                resolve: {}
             });
     });
