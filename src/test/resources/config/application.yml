@@ -4,7 +4,7 @@ server:
 
 
 # security configuration (this key should be unique for your application, and kept secret)
-jhipster.security.rememberme.key: 43dd9fcb9da4b4b81aa9c37dddfe532a07575d77
+jhipster.security.rememberme.key: 844ef7e86ebcfdaf69c33697e1dc9634065917ec
 
 async:
     corePoolSize: 2
@@ -36,6 +36,7 @@ metrics:
 swagger:
     apiDocsLocation: http://localhost:8080
     title: jhipster API
+    version: 0.0.1
     description: jhipster applications and beyond!
     termsOfServiceUrl: http://jhipster.github.io/
     contact:

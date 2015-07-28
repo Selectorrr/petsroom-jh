@@ -6,7 +6,7 @@ security.basic.enabled: false
 endpoints.jolokia.enabled: false
 
 # security configuration (this key should be unique for your application, and kept secret)
-jhipster.security.rememberme.key: 43dd9fcb9da4b4b81aa9c37dddfe532a07575d77
+jhipster.security.rememberme.key: 844ef7e86ebcfdaf69c33697e1dc9634065917ec
 
 async:
     corePoolSize: 2
@@ -32,6 +32,7 @@ authentication:
 swagger:
     title: petsroom API
     description: petsroom applications and beyond!
+    version: 0.0.1
     termsOfServiceUrl: http://jhipster.github.io/
     contact:
     license: Apache 2.0
