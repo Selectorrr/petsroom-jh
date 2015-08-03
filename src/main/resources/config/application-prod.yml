@@ -12,7 +12,6 @@ spring:
             host: localhost
             port: 27017
             database: petsroom
-    data:
         elasticsearch:
             cluster-name:
             cluster-nodes: localhost:9200
