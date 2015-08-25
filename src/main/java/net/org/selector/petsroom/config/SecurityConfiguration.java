@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/bower_components/**")
             .antMatchers("/i18n/**")
             .antMatchers("/assets/**")
-            .antMatchers("/swagger-ui.html")
+            .antMatchers("/swagger-ui/index.html")
             .antMatchers("/test/**");
     }
 
@@ -83,7 +83,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/**").authenticated()
             .antMatchers("/websocket/tracker").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/websocket/**").permitAll()
-            .antMatchers("/webjars/**").permitAll()
             .antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/health/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
@@ -95,10 +94,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/autoconfig/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/env/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/v2/api-docs/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/configuration/security").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/configuration/ui").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/swagger-ui.html").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/v2/api-docs/**").permitAll()
+            .antMatchers("/configuration/security").permitAll()
+            .antMatchers("/configuration/ui").permitAll()
+            .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/protected/**").authenticated()
             .and()
             .apply(securityConfigurerAdapter());

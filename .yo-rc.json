@@ -11,7 +11,7 @@
         "devDatabaseType": "mongodb",
         "prodDatabaseType": "mongodb",
         "searchEngine": "no",
-        "useCompass": true,
+        "useSass": true,
         "buildTool": "maven",
         "frontendBuilder": "grunt",
         "javaVersion": "8",

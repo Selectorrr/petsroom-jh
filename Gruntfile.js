@@ -1,4 +1,4 @@
-// Generated on 2015-08-01 using generator-jhipster 2.19.0
+// Generated on 2015-08-25 using generator-jhipster 2.20.0
 'use strict';
 var fs = require('fs');
 
@@ -44,9 +44,9 @@ module.exports = function (grunt) {
                 files: ['Gruntfile.js', 'pom.xml'],
                 tasks: ['ngconstant:dev']
             },
-            compass: {
+            sass: {
                 files: ['src/main/scss/**/*.{scss,sass}'],
-                tasks: ['compass:server']
+                tasks: ['sass:server']
             }
         },
         autoprefixer: {
@@ -121,25 +121,20 @@ module.exports = function (grunt) {
                 'src/main/webapp/scripts/components/**/*.js'
             ]
         },
-        compass: {
+        sass: {
             options: {
-                sassDir: 'src/main/scss',
-                cssDir: 'src/main/webapp/assets/styles',
-                generatedImagesDir: '.tmp/assets/images/generated',
-                imagesDir: 'src/main/webapp/assets/images',
-                javascriptsDir: 'src/main/webapp/scripts',
-                fontsDir: 'src/main/webapp/assets/fonts',
-                importPath: 'src/main/webapp/bower_components',
-                httpImagesPath: '/assets/images',
-                httpGeneratedImagesPath: '/assets/images/generated',
-                httpFontsPath: '/assets/fonts',
-                relativeAssets: false
+                includePaths: [
+                    'src/main/webapp/bower_components'
+                ]
             },
-            dist: {},
             server: {
-                options: {
-                    debugInfo: true
-                }
+                files: [{
+                    expand: true,
+                    cwd: 'src/main/scss',
+                    src: ['*.scss'],
+                    dest: 'src/main/webapp/assets/styles',
+                    ext: '.css'
+                }]
             }
         },
         concat: {
@@ -352,7 +347,7 @@ module.exports = function (grunt) {
         'clean:server',
         'wiredep',
         'ngconstant:dev',
-        'compass:server',
+        'sass:server',
         'browserSync',
         'watch'
     ]);
@@ -366,7 +361,7 @@ module.exports = function (grunt) {
         'clean:server',
         'wiredep:test',
         'ngconstant:dev',
-        'compass',
+        'sass:server',
         'karma'
     ]);
 
@@ -376,7 +371,7 @@ module.exports = function (grunt) {
         'ngconstant:prod',
         'useminPrepare',
         'ngtemplates',
-        'compass:dist',
+        'sass:server',
         'imagemin',
         'svgmin',
         'concat',
