@@ -10,7 +10,7 @@
         "databaseType": "mongodb",
         "devDatabaseType": "mongodb",
         "prodDatabaseType": "mongodb",
-        "searchEngine": "elasticsearch",
+        "searchEngine": "no",
         "useCompass": true,
         "buildTool": "maven",
         "frontendBuilder": "grunt",
