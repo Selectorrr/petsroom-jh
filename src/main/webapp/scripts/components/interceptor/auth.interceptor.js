@@ -8,8 +8,8 @@ angular.module('petsroomApp')
                 config.headers = config.headers || {};
                 var token = localStorageService.get('token');
 
-                if (token && token.expires && token.expires > new Date().getTime()) {
-                    config.headers['x-auth-token'] = token.token;
+                if (token && token.expires_at && token.expires_at > new Date().getTime()) {
+                    config.headers.Authorization = 'Bearer ' + token.access_token;
                 }
 
                 return config;

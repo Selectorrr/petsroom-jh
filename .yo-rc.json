@@ -3,7 +3,7 @@
         "baseName": "petsroom",
         "packageName": "net.org.selector.petsroom",
         "packageFolder": "net/org/selector/petsroom",
-        "authenticationType": "xauth",
+        "authenticationType": "oauth2",
         "hibernateCache": "no",
         "clusteredHttpSession": "no",
         "websocket": "spring-websocket",

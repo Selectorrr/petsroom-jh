@@ -24,8 +24,9 @@ mail:
     from: petsroom@localhost
 
 authentication:
-    xauth:
-        secret: myXAuthSecret
+    oauth:
+        clientid: petsroomapp
+        secret: mySecretOAuthSecret
         # Token is valid 30 minutes
         tokenValidityInSeconds: 1800
 

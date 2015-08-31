@@ -1,18 +1,23 @@
 package net.org.selector.petsroom.config;
 
 import com.mongodb.Mongo;
+import net.org.selector.petsroom.config.oauth2.OAuth2AuthenticationReadConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import org.springframework.data.mongodb.core.convert.CustomConversions;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @EnableMongoRepositories("net.org.selector.petsroom.repository")
@@ -32,6 +37,14 @@ public class CloudMongoDbConfiguration extends AbstractMongoConfiguration {
     @Bean
     public LocalValidatorFactoryBean validator() {
         return new LocalValidatorFactoryBean();
+    }
+
+    @Bean
+    public CustomConversions customConversions() {
+        List<Converter<?, ?>> converterList = new ArrayList<>();
+        OAuth2AuthenticationReadConverter converter = new OAuth2AuthenticationReadConverter();
+        converterList.add(converter);
+        return new CustomConversions(converterList);
     }
 
     @Override

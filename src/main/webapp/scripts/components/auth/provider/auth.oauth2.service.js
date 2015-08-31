@@ -5,27 +5,34 @@ angular.module('petsroomApp')
         return {
             login: function (credentials) {
                 var data = "username=" + encodeURIComponent(credentials.username) + "&password="
-                    + encodeURIComponent(credentials.password);
-                return $http.post('api/authenticate', data, {
+                    + encodeURIComponent(credentials.password) + "&grant_type=password&scope=read%20write&" +
+                    "client_secret=mySecretOAuthSecret&client_id=petsroomapp";
+                return $http.post('oauth/token', data, {
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
-                        "Accept": "application/json"
+                        "Accept": "application/json",
+                        "Authorization": "Basic " + Base64.encode("petsroomapp" + ':' + "mySecretOAuthSecret")
                     }
                 }).success(function (response) {
+                    var expiredAt = new Date();
+                    expiredAt.setSeconds(expiredAt.getSeconds() + response.expires_in);
+                    response.expires_at = expiredAt.getTime();
                     localStorageService.set('token', response);
                     return response;
                 });
             },
             logout: function () {
-                //Stateless API : No server logout
-                localStorageService.clearAll();
+                // logout from the server
+                $http.post('api/logout').then(function () {
+                    localStorageService.clearAll();
+                });
             },
             getToken: function () {
                 return localStorageService.get('token');
             },
             hasValidToken: function () {
                 var token = this.getToken();
-                return token && token.expires && token.expires > new Date().getTime();
+                return token && token.expires_at && token.expires_at > new Date().getTime();
             }
         };
     });

@@ -2,6 +2,7 @@ package net.org.selector.petsroom.config;
 
 
 import com.mongodb.Mongo;
+import net.org.selector.petsroom.config.oauth2.OAuth2AuthenticationReadConverter;
 import org.mongeez.Mongeez;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,14 +12,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
+import org.springframework.data.mongodb.core.convert.CustomConversions;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @Profile("!" + Constants.SPRING_PROFILE_CLOUD)
@@ -53,6 +58,14 @@ public class DatabaseConfiguration extends AbstractMongoConfiguration {
     @Override
     public Mongo mongo() throws Exception {
         return mongo;
+    }
+
+    @Bean
+    public CustomConversions customConversions() {
+        List<Converter<?, ?>> converterList = new ArrayList<>();
+        OAuth2AuthenticationReadConverter converter = new OAuth2AuthenticationReadConverter();
+        converterList.add(converter);
+        return new CustomConversions(converterList);
     }
 
     @Bean
