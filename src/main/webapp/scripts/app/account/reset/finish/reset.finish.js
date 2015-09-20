@@ -7,7 +7,7 @@ angular.module('petsroomApp')
                 parent: 'account',
                 url: '/reset/finish?key',
                 data: {
-                    roles: []
+                    authorities: []
                 },
                 views: {
                     'content@': {

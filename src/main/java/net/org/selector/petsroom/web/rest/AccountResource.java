@@ -1,7 +1,6 @@
 package net.org.selector.petsroom.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import net.org.selector.petsroom.domain.Authority;
 import net.org.selector.petsroom.domain.User;
 import net.org.selector.petsroom.repository.UserRepository;
 import net.org.selector.petsroom.security.SecurityUtils;
@@ -21,7 +20,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * REST controller for managing the current user's account.
@@ -103,19 +101,7 @@ public class AccountResource {
     @Timed
     public ResponseEntity<UserDTO> getAccount() {
         return Optional.ofNullable(userService.getUserWithAuthorities())
-            .map(user -> {
-                return new ResponseEntity<>(
-                    new UserDTO(
-                        user.getLogin(),
-                        null,
-                        user.getFirstName(),
-                        user.getLastName(),
-                        user.getEmail(),
-                        user.getLangKey(),
-                        user.getAuthorities().stream().map(Authority::getName)
-                            .collect(Collectors.toList())),
-                    HttpStatus.OK);
-            })
+            .map(user -> new ResponseEntity<>(new UserDTO(user), HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 

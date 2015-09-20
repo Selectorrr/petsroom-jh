@@ -3,6 +3,7 @@ package net.org.selector.petsroom.web.rest;
 import net.org.selector.petsroom.Application;
 import net.org.selector.petsroom.config.MongoConfiguration;
 import net.org.selector.petsroom.repository.UserRepository;
+import net.org.selector.petsroom.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,12 +37,16 @@ public class UserResourceTest {
     @Inject
     private UserRepository userRepository;
 
+    @Inject
+    private UserService userService;
+
     private MockMvc restUserMockMvc;
 
     @Before
     public void setup() {
         UserResource userResource = new UserResource();
         ReflectionTestUtils.setField(userResource, "userRepository", userRepository);
+        ReflectionTestUtils.setField(userResource, "userService", userService);
         this.restUserMockMvc = MockMvcBuilders.standaloneSetup(userResource).build();
     }
 

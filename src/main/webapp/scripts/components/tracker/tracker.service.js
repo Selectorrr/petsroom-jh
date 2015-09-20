@@ -22,10 +22,11 @@ angular.module('petsroomApp')
                 //building absolute path so that websocket doesnt fail when deploying with a context path
                 var loc = window.location;
                 var url = '//' + loc.host + loc.pathname + 'websocket/tracker';
+                var authToken = JSON.parse(localStorage.getItem("ls.token")).access_token;
+                url += '?access_token=' + authToken;
                 var socket = new SockJS(url);
                 stompClient = Stomp.over(socket);
                 var headers = {};
-                headers['X-CSRF-TOKEN'] = $cookies[$http.defaults.xsrfCookieName];
                 stompClient.connect(headers, function (frame) {
                     connected.resolve("success");
                     sendActivity();
